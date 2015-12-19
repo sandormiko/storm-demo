@@ -1,0 +1,10 @@
+{
+    "name": "kafkatest",
+    "namespace": "test",
+    "type": "record",
+    "fields": [
+        {"name": "id", "type": "int"},
+        {"name": "random", "type": "int"},
+        {"name": "data", "type": "string"}
+    ]
+  }
