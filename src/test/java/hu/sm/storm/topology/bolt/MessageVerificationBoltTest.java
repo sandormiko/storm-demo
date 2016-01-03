@@ -2,7 +2,6 @@ package hu.sm.storm.topology.bolt;
 
 import java.io.IOException;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -25,19 +24,12 @@ public class MessageVerificationBoltTest extends TestCaseBase {
 	@Mock
 	private OutputFieldsDeclarer declarer;
 
-	private Tuple tuple = null;
-
-	@Before
-	public void init() {
-		tuple = prepareTuple();
-	}
-
 	@Test
 	public void shouldEmitValuesWhenMessageReceived() throws IOException {
+		Tuple input = prepareTuple();
 		MessageVerificationBolt aggregator = new MessageVerificationBolt();
 		aggregator.prepare(new Config(), topologyContext, collector);
-
-		aggregator.execute(tuple);
+		aggregator.execute(input);
 
 		Mockito.verify(collector).ack(Mockito.any(Tuple.class));
 	}
